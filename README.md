@@ -14,6 +14,13 @@ SecurePad uses the powerful and secure [Blowfish cipher](https://en.wikipedia.or
 Changelog
 =========
 
+v2.5
+----
+Auto encrypt/decrypt for `.ctxt` files:
+- Opening a `.ctxt` file prompts for the key and decrypts the buffer for editing.
+- Saving a `.ctxt` file encrypts on disk while the editor keeps the plaintext view.
+- New menu item **Encrypt && Save As .ctxt...** prompts for a path + key, then saves the current document as an encrypted `.ctxt` file in one step.
+
 v2.4
 ----
 Fixed issue #13, regression form PR #12, completely replacing functionality with just the npp template code

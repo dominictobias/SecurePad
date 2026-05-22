@@ -16,6 +16,7 @@
 //Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
 #include "PluginDefinition.h"
+#include "Notepad_plus_msgs.h"
 
 extern FuncItem funcItem[nbFunc];
 extern NppData nppData;
@@ -68,13 +69,31 @@ extern "C" __declspec(dllexport) FuncItem * getFuncsArray(int *nbF)
 
 extern "C" __declspec(dllexport) void beNotified(SCNotification *notifyCode)
 {
-	switch (notifyCode->nmhdr.code) 
+	switch (notifyCode->nmhdr.code)
 	{
 		case NPPN_SHUTDOWN:
-		{
 			commandMenuCleanUp();
-		}
-		break;
+			break;
+
+		case NPPN_FILEOPENED:
+			OnFileOpened((UINT_PTR)notifyCode->nmhdr.idFrom);
+			break;
+
+		case NPPN_BUFFERACTIVATED:
+			OnBufferActivated((UINT_PTR)notifyCode->nmhdr.idFrom);
+			break;
+
+		case NPPN_FILEBEFORESAVE:
+			OnFileBeforeSave((UINT_PTR)notifyCode->nmhdr.idFrom);
+			break;
+
+		case NPPN_FILESAVED:
+			OnFileSaved((UINT_PTR)notifyCode->nmhdr.idFrom);
+			break;
+
+		case NPPN_FILECLOSED:
+			OnFileClosed((UINT_PTR)notifyCode->nmhdr.idFrom);
+			break;
 
 		default:
 			return;

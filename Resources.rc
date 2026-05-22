@@ -52,8 +52,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 2,4,0,0
- PRODUCTVERSION 2,4,0,0
+ FILEVERSION 2,5,0,0
+ PRODUCTVERSION 2,5,0,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -70,12 +70,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "DreamInPixels, dreaminpixels.net"
             VALUE "FileDescription", "SecurePad can be used to securely encrypt plaintext documents with a key of your choice"
-            VALUE "FileVersion", "2.4.0.0"
+            VALUE "FileVersion", "2.5.0.0"
             VALUE "InternalName", "SecurePad.dll"
             VALUE "LegalCopyright", "Copyright (c) 2022 dreaminpixels.net"
             VALUE "OriginalFilename", "SecurePad.dll"
             VALUE "ProductName", "SecurePad"
-            VALUE "ProductVersion", "2.4.0.0"
+            VALUE "ProductVersion", "2.5.0.0"
         END
     END
     BLOCK "VarFileInfo"
@@ -101,6 +101,17 @@ BEGIN
     EDITTEXT        IDC_EDIT1,26,23,150,15,ES_PASSWORD | ES_AUTOHSCROLL
     GROUPBOX        "Please enter the crypt key to encrypt/decrypt the text",IDC_STATIC,7,7,187,73
     EDITTEXT        IDC_EDIT2,26,54,150,15,ES_PASSWORD | ES_AUTOHSCROLL
+END
+
+IDD_DLGKEY_SINGLE DIALOGEX 0, 0, 201, 75
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Enter Crypt Key"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,89,52,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,143,52,50,14
+    EDITTEXT        IDC_EDIT_PASS,26,23,150,15,ES_PASSWORD | ES_AUTOHSCROLL
+    GROUPBOX        "Enter the crypt key to decrypt the text",IDC_STATIC,7,7,187,38
 END
 
 

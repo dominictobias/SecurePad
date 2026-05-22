@@ -25,6 +25,8 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <map>
+#include <set>
 
 #include <stdio.h>
 #include <tchar.h>
@@ -49,7 +51,7 @@ const TCHAR NPP_PLUGIN_NAME[] = TEXT("SecurePad");
 //
 // Here define the number of your plugin commands
 //
-const int nbFunc = 5;
+const int nbFunc = 6;
 
 
 //
@@ -90,6 +92,19 @@ enum class CryptAction {
 
 void CryptDoc(CryptAction action);
 void CryptSelection(CryptAction action);
+void EncryptSaveAsCtxt();
 void AboutDlg();
+
+// Auto encrypt/decrypt hooks for .ctxt files
+bool IsCtxtPath(const TCHAR* path);
+bool GetBufferPath(UINT_PTR bufferId, std::wstring& outPath);
+bool PromptForKey(unsigned char* keyOut, size_t keyOutSize);          // confirm (two fields)
+bool PromptForKeyOnce(unsigned char* keyOut, size_t keyOutSize);      // single field, decrypt
+void CryptCurrentDocWithKey(CryptAction action, const unsigned char* key);
+void OnFileOpened(UINT_PTR bufferId);
+void OnBufferActivated(UINT_PTR bufferId);
+void OnFileBeforeSave(UINT_PTR bufferId);
+void OnFileSaved(UINT_PTR bufferId);
+void OnFileClosed(UINT_PTR bufferId);
 
 #endif //PLUGINDEFINITION_H
